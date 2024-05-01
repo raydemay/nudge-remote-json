@@ -72,11 +72,15 @@ def update_json(sofa_data, nudge_json, offset):
         latest_release_date = os_version["Latest"]["ReleaseDate"]
 
         # Format latest_release_date so it can be manipulated
-        date_obj = offset_date_if_weekend(datetime.fromisoformat(latest_release_date))
+        date_obj = datetime.fromisoformat(latest_release_date)
+        check_date_string = date_obj.strftime("%Y-%m-%d")
+        offset_date = datetime.strptime(
+            offset_date_if_weekend(check_date_string), "%Y-%m-%d"
+        )
 
         # Use timedelta to offset the release date for the production schedule
         time_delta = timedelta(days=offset, hours=22)
-        new_date = date_obj + time_delta
+        new_date = offset_date + time_delta
 
         # Format the new date object back to the format that Nudge wants
         update_deadline = new_date.isoformat().replace("+00:00", "Z")
@@ -106,7 +110,7 @@ def main():
 
         new_version_available = check_for_updates(sofa_data, test_json)
         if new_version_available:
-            test_json = update_json(sofa_data, test_json, 1)
+            test_json = update_json(sofa_data, test_json, 10)
 
     # Write JSON fies
     with open("nudge-test.json", "w") as test:
