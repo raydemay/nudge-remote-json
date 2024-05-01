@@ -2,7 +2,8 @@ import json
 import requests
 from datetime import datetime, timedelta
 
-def update_json(sofa_data,nudge_json,offset):
+
+def update_json(sofa_data, nudge_json, offset):
     latest_os_versions = sofa_data["OSVersions"]
     # Update Nudge JSON with the latest versions and release dates
     for os_version in latest_os_versions:
@@ -30,6 +31,7 @@ def update_json(sofa_data,nudge_json,offset):
                 break  # Exit inner loop once a match is found
     return nudge_json
 
+
 # Read  existing JSON files
 with open("nudge-test.json", "r") as test:
     test_json = json.load(test)
@@ -47,12 +49,10 @@ sofa_json = requests.get("https://sofa.macadmins.io/v1/macos_data_feed.json")
 if sofa_json.status_code == 200:
     sofa_data = sofa_json.json()
 
-    test_json = update_json(sofa_data,test_json,1)
-    pilot_json = update_json(sofa_data,pilot_json,3)
-    prod_json = update_json(sofa_data,prod_json,7)
-    
+    test_json = update_json(sofa_data, test_json, 1)
+    pilot_json = update_json(sofa_data, pilot_json, 3)
+    prod_json = update_json(sofa_data, prod_json, 7)
 
-    
 
 # Write JSON fies
 with open("nudge-test.json", "w") as test:
