@@ -8,7 +8,6 @@ def update_json(sofa_data, nudge_json, offset):
     # Update Nudge JSON with the latest versions and release dates
     for os_version in latest_os_versions:
         latest_version = os_version["Latest"]["ProductVersion"]
-        print(latest_version)
         latest_release_date = os_version["Latest"]["ReleaseDate"]
 
         # Format latest_release_date so it can be manipulated
@@ -32,7 +31,7 @@ def update_json(sofa_data, nudge_json, offset):
     return nudge_json
 
 
-# Read  existing JSON files
+# Read existing JSON files
 with open("nudge-test.json", "r") as test:
     test_json = json.load(test)
 
@@ -56,10 +55,10 @@ if sofa_json.status_code == 200:
 
 # Write JSON fies
 with open("nudge-test.json", "w") as test:
-    test_json = json.dump(test)
+    json.dump(test_json, test)
 
 with open("nudge-pilot.json", "w") as pilot:
-    pilot_json = json.dump(pilot)
+    json.dump(pilot_json, pilot)
 
 with open("nudge-prod.json", "w") as prod:
-    prod_json = json.dump(prod)
+    json.dump(prod_json, prod)
