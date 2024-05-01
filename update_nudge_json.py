@@ -55,10 +55,10 @@ if sofa_json.status_code == 200:
 
 # Write JSON fies
 with open("nudge-test.json", "w") as test:
-    json.dump(test_json, test)
+    json.dump(test_json, test, indent=4)
 
 with open("nudge-pilot.json", "w") as pilot:
-    json.dump(pilot_json, pilot)
+    json.dump(pilot_json, pilot, indent=4)
 
 with open("nudge-prod.json", "w") as prod:
-    json.dump(prod_json, prod)
+    json.dump(prod_json, prod, indent=4)
