@@ -37,7 +37,6 @@ def check_for_updates(sofa_data, nudge_json):
     Returns:
         True if the ProductVersion has changed, False otherwise.
     """
-
     os_versions = sofa_data["OSVersions"]
     for item in os_versions:
         latest_version = item["Latest"]["ProductVersion"]
@@ -49,8 +48,6 @@ def check_for_updates(sofa_data, nudge_json):
                     return True  # Version has changed for this targetedOSVersionsRule
                 else:
                     return False  # No version change found
-
-    # Check for version change in any item
 
 
 def update_json(sofa_data, nudge_json, offset):
@@ -97,7 +94,7 @@ def update_json(sofa_data, nudge_json, offset):
 
 
 def main():
-    # Read existing JSON files
+    # Read existing JSON file
     with open("nudge-test.json", "r") as test:
         test_json = json.load(test)
 
