@@ -3,3 +3,9 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
+azure-functions-durable
+certifi==2024.2.2
+charset-normalizer==3.3.2
+idna==3.7
+requests==2.31.0
+urllib3==2.2.1
