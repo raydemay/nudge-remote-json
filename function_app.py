@@ -22,10 +22,6 @@ def SOAP_Checker(myTimer: func.TimerRequest) -> None:
     import json
 
 
-import requests
-from datetime import datetime, timedelta
-
-
 def offset_date_if_weekend(date_str):
     """
     Checks if a date string is a weekend (Saturday or Sunday).
